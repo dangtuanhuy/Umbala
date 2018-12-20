@@ -17,39 +17,94 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Hachi</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-secondary">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Hachi</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link">Order History</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Category Type</a>
+                        <a class="dropdown-item" asp-controller="SubCategories" asp-action="Index">Sub Category</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-controller="MenuItems" asp-action="Index">Menu Item</a>
+                        <a class="dropdown-item" href="#">Coupons</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Order
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Manage Order</a>
+                        <a class="dropdown-item" href="#">Order Pikup</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Order Details</a>
+                    </div>
+                </li>
+                <li style="color:white;">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cart-plus"></i>
+                        (0)
+
+
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="form-inline">
+            @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
     <div class="container body-content">
+        <br />
         @RenderBody()
+
         <hr />
-        <footer>
-            <p>&copy; 2018 - Hachi</p>
-        </footer>
+        <br />
     </div>
+    <footer class="footer">
+        <div class="cont">
+            <p>&copy; 2018 - Hachi</p>
+
+        </div>
+    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+        <link href="~/lib/DataTables/datatables.css" rel="stylesheet" />
+        <script src="~/lib/DataTables/datatables.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tablefillset').DataTable(
+                    {
+                        "language": {
+                            "infoEmpty": "Data null",
+                            "emptyTable": "Null Data",
+                            "processing": "Access...",
+                            "search": "Search:",
+                            "loadingRecords": "load...",
+                            "zeroRecords": "Data cannot find",
+                            "paginate": {
+                                "first": "|<",
+                                "last": ">|",
+                                "next": ">>",
+                                "previous": "<<"
+                            }
+                        },
+                        "lengthMenu": [[5, 10, 15, 20, 25, 30, -1], [5, 10, 15, 20, 25, 30, "All"]]
+                    }
+                );
+            });
+        </script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
