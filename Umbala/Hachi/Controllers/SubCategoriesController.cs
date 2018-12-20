@@ -88,7 +88,7 @@ namespace Hachi.Controllers
                 return NotFound();
             }
             var subCategory = await _db.SubCategory.SingleOrDefaultAsync(m => m.Id == id);
-            if(subCategory == null)
+            if (subCategory == null)
             {
                 return NotFound();
             }
@@ -154,6 +154,7 @@ namespace Hachi.Controllers
 
             return View(subCategory);
         }
+        //GET Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
