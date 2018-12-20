@@ -1,18 +1,18 @@
 ﻿@model Hachi.Models.SubCategoryViewModel.SubCategoryAndCategoryViewModel
 @using Hachi.Extensions
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
-<h2>Create Sub Category</h2>
+<h2>Edit Sub Category</h2>
 <br />
-@Html.Partial("_StatusMessage",Model.StatusMessage)
+@Html.Partial("_StatusMessage", Model.StatusMessage)
 <hr />
 <div class="row">
     <div class="col-8">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div class="form-border">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group row">
@@ -38,7 +38,7 @@
                         <label asp-for="isNew" class="control-label"></label>
                     </div>
                     <div class="col-5">
-                        <input asp-for="isNew"  />
+                        <input asp-for="isNew" />
                     </div>
                 </div>
                 <br />
@@ -48,7 +48,7 @@
 
                     </div>
                     <div class="col-5">
-                        <input type="submit" value="Create" class="btn btn-primary" />&nbsp;
+                        <input type="submit" value="Update" class="btn btn-primary" />&nbsp;
                         <a asp-action="Index" class="btn btn-success">Index</a>
                     </div>
                 </div>
@@ -57,11 +57,11 @@
         </form>
     </div>
     <div class="col-4">
-        @if(Model.SubCategoryList.Count()>0)
+        @if (Model.SubCategoryList.Count() > 0)
         {
             <p>Existing Subcategories:</p>
             <ul class="list-group">
-                @foreach(var item in Model.SubCategoryList)
+                @foreach (var item in Model.SubCategoryList)
                 {
 
                     <li class="list-group-item">@item</li>
@@ -73,5 +73,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
 
